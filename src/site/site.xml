@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="maven-benerator-plugin">
+
+    <!--    <skin>-->
+    <!--        <groupId>databene</groupId>-->
+    <!--        <artifactId>databene-skin</artifactId>-->
+    <!--        <version>1.0</version>-->
+    <!--    </skin>-->
+
+    <bannerLeft>
+        <name>maven-benerator-plugin</name>
+        <src>images/logos/maven-benerator-plugin.gif</src>
+        <href>./</href>
+    </bannerLeft>
+
+    <!--bannerRight>
+      <src>http://maven.apache.org/images/maven-small.gif</src>
+    </bannerRight-->
+
+    <poweredBy>
+        <logo name="Maven" href="http://maven.apache.org/"
+              img="images/logos/maven-button-2.png"/>
+    </poweredBy>
+
+
+    <body>
+
+        <head>
+            <meta name="Description" content="Open Source developer software"/>
+            <meta name="Keywords" content="open source, software quality, performance"/>
+            <meta name="Author" content="Volker Bergmann / rapiddweller GmbH"/>
+            <meta name="Publisher" content="rapiddweller GmbH"/>
+            <meta name="Copyright" content="Volker Bergmann / rapiddweller GmbH"/>
+            <meta name="Content-language" content="en"/>
+        </head>
+
+        <menu name="benerator.de" inherit="top">
+            <item name="about" href="https://www.rapiddweller.com/"/>
+            <item name="news" href="../news.html"/>
+            <item name="manual" href="https://www.benerator.de/ce/doc"/>
+            <item name="support" href=".https://benerator.de"/>
+            <item name="training" href="https://benerator.de"/>
+            <item name="contact" href="../contact.html"/>
+            <item name="downloads" href="https://github.com/rapiddweller/maven-benerator-plugin"/>
+            <item name="bug tracking" href="https://github.com/rapiddweller/maven-benerator-plugin"/>
+        </menu>
+
+        <menu name="all products">
+            <item name="rapiddweller-benerator-ce" href="https://benerator.de"/>
+            <item name="maven benerator plugin" href="https://github.com/rapiddweller/maven-benerator-plugin"/>
+            <item name="rd-lib-format" href="https://github.com/rapiddweller/rd-lib-format"/>
+            <item name="rd-lib-common" href="https://github.com/rapiddweller/rd-lib-common"/>
+            <item name="rd-lib-script" href="https://github.com/rapiddweller/rd-lib-script"/>
+            <item name="rd-lib-jdbacl" href="https://github.com/rapiddweller/rd-lib-jdbacl"/>
+            <item name="rd-lib-contiperf" href="https://github.com/rapiddweller/rd-lib-contiperf"/>
+        </menu>
+
+        <menu name="maven-benerator-plugin">
+            <item name="introduction" href="index.html"/>
+            <item name="goals" href="plugin-info.html"/>
+        </menu>
+
+        <menu name="plugin reports" ref="reports"/>
+
+    </body>
+</project>

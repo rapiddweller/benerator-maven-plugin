@@ -20,6 +20,7 @@
 
         <java_source_version>11</java_source_version>
         <java_target_version>11</java_target_version>
+        <dependency_graalvm.version>21.1.0</dependency_graalvm.version>
         <plugin_maven-plugin-plugin.version>3.6.1</plugin_maven-plugin-plugin.version>
         <plugin_maven-project-info-reports-plugin.version>2.9</plugin_maven-project-info-reports-plugin.version>
         <plugin_maven-site-plugin.version>3.7</plugin_maven-site-plugin.version>
@@ -136,6 +137,18 @@
             <groupId>com.rapiddweller</groupId>
             <artifactId>rapiddweller-benerator-ce</artifactId>
             <version>${benerator_version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.graalvm.js</groupId>
+            <artifactId>js</artifactId>
+            <version>${dependency_graalvm.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.graalvm.sdk</groupId>
+            <artifactId>graal-sdk</artifactId>
+            <version>${dependency_graalvm.version}</version>
         </dependency>
 
         <dependency>

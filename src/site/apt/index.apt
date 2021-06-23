@@ -1,0 +1,163 @@
+					--------------------------------------------
+					Introduction to the Maven 3 benerator Plugin
+					--------------------------------------------
+					Volker Bergmann / rapiddweller GmbH
+					--------------------------------------------
+ 
+
+Maven 3 benerator Plugin
+
+* Introduction
+
+  The benerator plugin enables you to attach benerator to your build cycle or simply 
+  use maven and its configuration capabilities for benerator setup and invocation.
+
+* Goals Overview
+
+  The benerator plugin has three goals:
+
+  * benerator:generate 
+
+  * benerator:dbsnapshot 
+
+  * benerator:createxml
+
+* Getting started
+
+  First of all, configure the benerator plugin in your project. The minimal form would be:
+
+----------------------------------------------------------------------------------------------------
+<build>
+	...
+	<plugins>
+		<plugin>
+		    <groupId>com.rapiddweller</groupId>
+		    <artifactId>maven-benerator-plugin</artifactId>
+		    <version>1.1.2</version>
+		</plugin>
+	</plugins>
+</build>
+----------------------------------------------------------------------------------------------------
+
+  This defaults the descriptor path to src/test/benerator/benerator.ben.xml.
+
+* Configuration
+
+  You may configure certain aspects of benerator behvior, e.g.
+
+----------------------------------------------------------------------------------------------------
+    <plugin>
+        <groupId>com.rapiddweller</groupId>
+        <artifactId>maven-benerator-plugin</artifactId>
+        <version>1.1.2</version>
+        <configuration>
+            <descriptor>src/test/benerator/myproject.ben.xml</descriptor>
+            <encoding>iso-8859-1</encoding>
+            <dbDriver>oracle.jdbc.driver.OracleDriver</dbDriver>
+            <dbUrl>jdbc:oracle:thin:@localhost:1521:XE</dbUrl>
+            <dbSchema>user</dbSchema>
+            <dbUser>user</dbUser>
+            <dbPassword>password</dbPassword>
+        </configuration>
+    </plugin>
+----------------------------------------------------------------------------------------------------
+
+* Extending the classpath
+
+  In most cases you will need to refer to other libraries, e.g. the database driver or your benerator extensions.
+  As of maven 2.0.9 you can add them as dependencies to your plugin configuration:
+  
+----------------------------------------------------------------------------------------------------
+    <plugin>
+        <groupId>com.rapiddweller</groupId>
+        <artifactId>maven-benerator-plugin</artifactId>
+        <version>1.1.2</version>
+	    <configuration>
+	    	...
+	    </configuration>
+	    <dependencies>
+	        <dependency>
+	            <groupId>oracle</groupId>
+	            <artifactId>ojdbc</artifactId>
+	            <version>1.4</version>
+	        </dependency>
+	    </dependencies>
+   </plugin>
+----------------------------------------------------------------------------------------------------
+  
+  
+* Profile-based configuration
+
+  In cooperative software development you are supposed to keep your individual configuration private.
+  E.g. you might have individual database configurations on your local development systems.
+  You can then specify them as profile properties in a Maven settings.xml file in your user directory.
+
+----------------------------------------------------------------------------------------------------
+	<profiles>
+		<profile>
+			<id>development</id>
+			
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+
+			<properties>
+		        <database.driver>oracle.jdbc.driver.OracleDriver</database.driver>
+		        <database.url>jdbc:oracle:thin:@localhost:1521:XE</database.url>
+		        <database.user>user</database.user>
+		        <database.pwd>user</database.pwd>
+			</properties>
+		</profile>
+	<profiles>
+----------------------------------------------------------------------------------------------------
+
+  You would then refer them in your POM:
+
+----------------------------------------------------------------------------------------------------
+	<plugin>
+        <groupId>com.rapiddweller</groupId>
+        <artifactId>maven-benerator-plugin</artifactId>
+        <version>1.1.2</version>
+	    <configuration>
+	        <descriptor>src/test/benerator/myproject.ben.xml</descriptor>
+	        <encoding>ISO-8859-1</encoding>
+	        <dbDriver>${database.driver}</dbDriver>
+	        <dbUrl>${database.url}</dbUrl>
+	        <dbUser>${database.user}</dbUser>
+	        <dbPassword>${database.pwd}</dbPassword>
+	        <dbSchema>${database.user}</dbSchema>
+	    </configuration>
+	</plugin>
+----------------------------------------------------------------------------------------------------
+
+
+
+* Attaching the Mojo to the Build Lifecycle
+
+  You can also configure the benerator plugin to attach specific goals to a particular phase of the build lifecycle. 
+  Here is an example:
+
+----------------------------------------------------------------------------------------------------
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.rapiddweller</groupId>
+        <artifactId>maven-benerator-plugin</artifactId>
+        <version>1.1.2</version>
+        <executions>
+          <execution>
+            <phase>integration-test</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+----------------------------------------------------------------------------------------------------
+
+  This causes the benerator goal 'generate' to be executed whenever integration tests are run. 
+  For more information on binding a plugin to phases in the lifecycle, please refer to the 
+  {{{http://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html}Build Lifecycle}} document.
+
