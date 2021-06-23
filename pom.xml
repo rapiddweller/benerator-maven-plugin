@@ -1,0 +1,367 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.rapiddweller</groupId>
+    <artifactId>benerator-maven-plugin</artifactId>
+    <version>1.1.2-jdk-11-SNAPSHOT</version>
+    <packaging>maven-plugin</packaging>
+
+    <name>rapiddweller-benerator maven plugin</name>
+    <description>
+        Maven plugin for integrating rapiddweller-benerator in your build process.
+        The goals are benerator:generate, benerator:dbsnapshot and benerator:createxml.
+    </description>
+
+    <properties>
+        <benerator_version>1.1.2-jdk-11</benerator_version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <java_source_version>11</java_source_version>
+        <java_target_version>11</java_target_version>
+        <plugin_maven-plugin-plugin.version>3.6.1</plugin_maven-plugin-plugin.version>
+        <plugin_maven-project-info-reports-plugin.version>2.9</plugin_maven-project-info-reports-plugin.version>
+        <plugin_maven-site-plugin.version>3.7</plugin_maven-site-plugin.version>
+        <plugin_maven-assembly-plugin.version>3.3.0</plugin_maven-assembly-plugin.version>
+        <plugin_maven-compiler-plugin.version>3.8.1</plugin_maven-compiler-plugin.version>
+        <plugin_maven-plugin-api.version>3.6.3</plugin_maven-plugin-api.version>
+        <plugin_maven-gpg-plugin.version>1.6</plugin_maven-gpg-plugin.version>
+        <plugin_maven-javadoc-plugin.version>3.2.0</plugin_maven-javadoc-plugin.version>
+        <plugin_maven-jxr-plugin.version>3.0.0</plugin_maven-jxr-plugin.version>
+        <plugin_maven-pmd-plugin.version>3.14.0</plugin_maven-pmd-plugin.version>
+        <plugin_maven-resources-plugin.version>2.6</plugin_maven-resources-plugin.version>
+        <plugin_plugin_maven-site-plugin.version>3.9.1</plugin_plugin_maven-site-plugin.version>
+        <plugin_maven-source-plugin.version>3.2.1</plugin_maven-source-plugin.version>
+        <plugin_maven-surefire-plugin.version>3.0.0-M5</plugin_maven-surefire-plugin.version>
+        <plugin_maven-surefire-report-plugin.version>3.0.0-M5</plugin_maven-surefire-report-plugin.version>
+        <plugin_nexus-staging-maven-plugin.version>1.6.8</plugin_nexus-staging-maven-plugin.version>
+        <plugin_surefire-api.version>3.0.0-M5</plugin_surefire-api.version>
+        <plugin_surefire-junit4.version>3.0.0-M5</plugin_surefire-junit4.version>
+        <plugin_versions-maven-plugin.version>2.8.1</plugin_versions-maven-plugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+
+    <url>https://www.benerator.de</url>
+    <inceptionYear>2006</inceptionYear>
+
+    <organization>
+        <name>rapiddweller GmbH</name>
+        <url>https://www.rapiddweller.com</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>GNU Public License</name>
+            <url>https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt</url>
+            <distribution>manual</distribution>
+            <comments>Redistribution and use in source and binary forms, with or without
+                modification, is permitted under the terms of the
+                GNU General Public License.
+            </comments>
+        </license>
+        <license>
+            <name>Commercial License</name>
+            <url>https://www.benerator.de/commercial_license.txt</url>
+            <distribution>manual</distribution>
+            <comments>For redistributing this software or a derivative work under a license
+                other than the GPL-compatible Free Software License as defined by the
+                Free Software Foundation or approved by OSI, you must first obtain
+                a commercial license for this software from rapiddweller GmbH.
+            </comments>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>volker.bergmann</id>
+            <name>Volker Bergmann</name>
+            <email>volker.bergmann@databene.org</email>
+            <roles>
+                <role>project founder</role>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+            <timezone>UTC+01:00</timezone>
+        </developer>
+        <developer>
+            <id>alexander.kell</id>
+            <name>Alexander Kell</name>
+            <email>alexander.kell@rapiddweller.com</email>
+            <organization>rapiddweller GmbH</organization>
+            <organizationUrl>https://www.rapiddweller.com</organizationUrl>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+            <timezone>UTC+01:00</timezone>
+        </developer>
+        <developer>
+            <id>peter.brinkhoff</id>
+            <name>Peter Brinkhoff</name>
+            <email>peter.brinkhoff@rapiddweller.com</email>
+            <organization>rapiddweller GmbH</organization>
+            <organizationUrl>https://www.rapiddweller.com</organizationUrl>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+            <timezone>UTC+07:00</timezone>
+        </developer>
+        <developer>
+            <id>enrico.scarbata</id>
+            <name>Enrico Scarbata</name>
+            <email>enrico.scarbata@rapiddweller.com</email>
+            <roles>
+                <role>consultant</role>
+            </roles>
+            <timezone>UTC+01:00</timezone>
+        </developer>
+        <developer>
+            <id>sriharsha.kankatala</id>
+            <name>Sriharsha Kankatala</name>
+            <email>sriharshakankatala@gmail.com</email>
+            <roles>
+                <role>developer</role>
+                <role>contributor</role>
+            </roles>
+            <timezone>UTC+05:30</timezone>
+        </developer>
+    </developers>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.rapiddweller</groupId>
+            <artifactId>rapiddweller-benerator-ce</artifactId>
+            <version>${benerator_version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <version>${plugin_maven-plugin-api.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <filtering>false</filtering>
+                <directory>${basedir}/src/main/resources</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+        </resources>
+
+        <testResources>
+            <testResource>
+                <filtering>false</filtering>
+                <directory>${basedir}/src/test/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </testResource>
+        </testResources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>${plugin_maven-plugin-plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${plugin_maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java_source_version}</source>
+                    <target>${java_target_version}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${plugin_maven-resources-plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>${plugin_maven-assembly-plugin.version}</version>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/main/assembly/dist-assembly.xml</descriptor>
+                    </descriptors>
+                    <tarLongFileMode>gnu</tarLongFileMode>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${plugin_maven-javadoc-plugin.version}</version>
+                <configuration>
+                    <doclint>none</doclint>
+                    <source>${java_source_version}</source>
+                    <detectJavaApiLink>false</detectJavaApiLink>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+
+    </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>${plugin_maven-surefire-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>${plugin_maven-pmd-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>${plugin_maven-jxr-plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>${plugin_maven-site-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>${plugin_maven-project-info-reports-plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>${plugin_maven-plugin-plugin.version}</version>
+            </plugin>
+
+        </plugins>
+
+    </reporting>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>${plugin_maven-source-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>${plugin_maven-javadoc-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${plugin_maven-gpg-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                                <configuration>
+                                    <gpgArguments>
+                                        <arg>--pinentry-mode</arg>
+                                        <arg>loopback</arg>
+                                    </gpgArguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>${plugin_nexus-staging-maven-plugin.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
+    </profiles>
+
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>https://repo1.maven.org/maven2</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>snapshots-repo</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <scm>
+        <url>https://github.com/rapiddweller/maven-benerator-plugin</url>
+        <connection>scm:git:git://github.com/rapiddweller/maven-benerator-plugin.git</connection>
+        <developerConnection>scm:git:git://github.com/rapiddweller/maven-benerator-plugin.git</developerConnection>
+    </scm>
+</project>
+
