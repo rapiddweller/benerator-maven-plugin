@@ -1,9 +1,9 @@
 # maven-benerator-plugin
 
-![.github/workflows/ci.yml](https://github.com/rapiddweller/maven-benerator-plugin/workflows/.github/workflows/ci.yml/badge.svg)[![Codacy
-Badge](https://app.codacy.com/project/badge/Grade/f1e0c887d8ca410e8de4d3cbbc977416)](https://www.codacy.com/gh/rapiddweller/maven-benerator-plugin/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=rapiddweller/maven-benerator-plugin&amp;utm_campaign=Badge_Grade)[![Codacy
-Badge](https://app.codacy.com/project/badge/Coverage/f1e0c887d8ca410e8de4d3cbbc977416)](https://www.codacy.com/gh/rapiddweller/maven-benerator-plugin/dashboard?utm_source=github.com&utm_medium=referral&utm_content=rapiddweller/maven-benerator-plugin&utm_campaign=Badge_Coverage)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.rapiddweller/maven-benerator-plugin/badge.svg)](https://search.maven.org/artifact/com.rapiddweller/maven-benerator-plugin)
+![.github/workflows/ci.yml](https://github.com/rapiddweller/benerator-maven-plugin/workflows/.github/workflows/ci.yml/badge.svg)[![Codacy
+Badge](https://app.codacy.com/project/badge/Grade/f1e0c887d8ca410e8de4d3cbbc977416)](https://www.codacy.com/gh/rapiddweller/benerator-maven-plugin/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=rapiddweller/maven-benerator-plugin&amp;utm_campaign=Badge_Grade)[![Codacy
+Badge](https://app.codacy.com/project/badge/Coverage/f1e0c887d8ca410e8de4d3cbbc977416)](https://www.codacy.com/gh/rapiddweller/benerator-maven-plugin/dashboard?utm_source=github.com&utm_medium=referral&utm_content=rapiddweller/benerator-maven-plugin&utm_campaign=Badge_Coverage)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.rapiddweller/benerator-maven-plugin/badge.svg)](https://search.maven.org/artifact/com.rapiddweller/benerator-maven-plugin)
 
 'maven-benerator-plugin' is an open source Java library forked from maven-benerator-plugin by Volker Bergmann.
 
