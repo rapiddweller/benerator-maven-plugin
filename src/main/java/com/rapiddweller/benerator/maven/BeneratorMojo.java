@@ -43,92 +43,92 @@ import java.io.IOException;
  */
 public class BeneratorMojo extends AbstractBeneratorMojo {
 
-	/**
-	 * The fully qualified name of the JDBC database driver (can be queried in the descriptor file as ${db_driver}).
-	 *
-	 * @parameter
-	 */
-	protected String dbDriver;
+  /**
+   * The fully qualified name of the JDBC database driver (can be queried in the descriptor file as ${db_driver}).
+   *
+   * @parameter
+   */
+  protected String dbDriver;
 
-	/**
-	 * The JDBC database url (can be queried in the descriptor file as ${db_url}).
-	 *
-	 * @parameter
-	 */
-	protected String dbUrl;
+  /**
+   * The JDBC database url (can be queried in the descriptor file as ${db_url}).
+   *
+   * @parameter
+   */
+  protected String dbUrl;
 
-	/**
-	 * The database user name (can be queried in the descriptor file as ${db_user}).
-	 *
-	 * @parameter expression="${user.name}"
-	 */
-	protected String dbUser;
+  /**
+   * The database user name (can be queried in the descriptor file as ${db_user}).
+   *
+   * @parameter expression="${user.name}"
+   */
+  protected String dbUser;
 
-	/**
-	 * The database password (can be queried in the descriptor file as ${db_password}).
-	 *
-	 * @parameter expression="${user.name}"
-	 */
-	protected String dbPassword;
+  /**
+   * The database password (can be queried in the descriptor file as ${db_password}).
+   *
+   * @parameter expression="${user.name}"
+   */
+  protected String dbPassword;
 
-	/**
-	 * The database schema to use (can be queried in the descriptor file as ${db_schema}).
-	 *
-	 * @parameter expression="${user.name}"
-	 */
-	protected String dbSchema;
+  /**
+   * The database schema to use (can be queried in the descriptor file as ${db_schema}).
+   *
+   * @parameter expression="${user.name}"
+   */
+  protected String dbSchema;
 
-	/**
-	 * The path of the descriptor file relative to the project's root.
-	 * This defaults to <code>src/test/benerator/benerator.ben.xml</code>.
-	 *
-	 * @parameter default-value="benerator.xml"
-	 */
-	private File descriptor;
+  /**
+   * The path of the descriptor file relative to the project's root.
+   * This defaults to <code>src/test/benerator/benerator.ben.xml</code>.
+   *
+   * @parameter default-value="benerator.xml"
+   */
+  private File descriptor;
 
-	/**
-	 * Specifies if maven should perform internal validation.
-	 * This defaults to <code>true</code>.
-	 *
-	 * @parameter default-value="true"
-	 */
-	private boolean validate;
+  /**
+   * Specifies if maven should perform internal validation.
+   * This defaults to <code>true</code>.
+   *
+   * @parameter default-value="true"
+   */
+  private boolean validate;
 
-	/**
-	 * Invokes benerator using the settings from the pom's configuration.
-	 */
-	public void execute() throws MojoExecutionException {
-		setSystemProperties();
-		setupClasspath();
-		try {
-			Benerator.main(new String[] {descriptor.getAbsolutePath()});
-		} catch (IOException e) {
-			throw new MojoExecutionException("Error in generation", e);
-		}
-	}
+  /**
+   * Invokes benerator using the settings from the pom's configuration.
+   */
+  public void execute() throws MojoExecutionException {
+    setSystemProperties();
+    setupClasspath();
+    try {
+      Benerator.main(new String[] {descriptor.getAbsolutePath()});
+    } catch (IOException e) {
+      throw new MojoExecutionException("Error in generation", e);
+    }
+  }
 
-	// non-public helpers ----------------------------------------------------------------------------------------------
+  // non-public helpers ----------------------------------------------------------------------------------------------
 
-	@Override
-	protected void setSystemProperties() {
-		super.setSystemProperties();
-		setSystemProperty("db_driver", dbDriver);
-		setSystemProperty("dbDriver", dbDriver);
+  @Override
+  protected void setSystemProperties() {
+    super.setSystemProperties();
+    setSystemProperty("db_driver", dbDriver);
+    setSystemProperty("dbDriver", dbDriver);
 
-		setSystemProperty("db_url", dbUrl);
-		setSystemProperty("dbUrl", dbUrl);
+    setSystemProperty("db_url", dbUrl);
+    setSystemProperty("dbUrl", dbUrl);
 
-		setSystemProperty("db_user", dbUser);
-		setSystemProperty("dbUser", dbUser);
+    setSystemProperty("db_user", dbUser);
+    setSystemProperty("dbUser", dbUser);
 
-		setSystemProperty("db_password", dbPassword);
-		setSystemProperty("dbPassword", dbPassword);
+    setSystemProperty("db_password", dbPassword);
+    setSystemProperty("dbPassword", dbPassword);
 
-		setSystemProperty("db_schema", dbSchema);
-		setSystemProperty("dbSchema", dbSchema);
+    setSystemProperty("db_schema", dbSchema);
+    setSystemProperty("dbSchema", dbSchema);
 
-		System.setProperty("file.encoding", encoding);
-		System.setProperty("benerator.validate", String.valueOf(validate));
-	}
+    System.setProperty("file.encoding", encoding);
+    System.setProperty("benerator.validate", String.valueOf(validate));
+  }
 
 }
