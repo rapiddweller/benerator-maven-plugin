@@ -98,6 +98,11 @@ public class BeneratorMojo extends AbstractBeneratorMojo {
    * Invokes benerator using the settings from the pom's configuration.
    */
   public void execute() throws MojoExecutionException {
+    Thread.setDefaultUncaughtExceptionHandler((t, e) -> {
+      if (!e.toString().equals("java.lang.NoClassDefFoundError: org/graalvm/collections/EconomicMapImpl$3")) {
+        System.out.println("Caught " + e);
+      }
+    });
     setSystemProperties();
     setupClasspath();
     try {

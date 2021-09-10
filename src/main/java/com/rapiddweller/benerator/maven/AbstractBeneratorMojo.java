@@ -36,7 +36,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -124,9 +123,7 @@ public abstract class AbstractBeneratorMojo extends AbstractMojo {
   protected URL[] getClasspathURLs() throws MalformedURLException {
     List<String> classpathElements = getClasspathElements();
     List<URL> urls = new ArrayList<URL>(classpathElements.size());
-    Iterator<String> iterator = classpathElements.iterator();
-    while (iterator.hasNext()) {
-      String classpathElement = iterator.next();
+    for (String classpathElement : classpathElements) {
       urls.add(new File(classpathElement).toURI().toURL());
     }
     return CollectionUtil.toArray(urls);
