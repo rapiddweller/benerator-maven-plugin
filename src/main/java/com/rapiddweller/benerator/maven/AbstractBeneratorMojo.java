@@ -54,7 +54,7 @@ public abstract class AbstractBeneratorMojo extends AbstractMojo {
    * The file encoding to use as default for all file I/O. It defaults to the
    * system's encoding.
    *
-   * @parameter expression="${file.encoding}"
+   * @parameter property="file.encoding"
    */
   protected String encoding;
 
@@ -68,7 +68,7 @@ public abstract class AbstractBeneratorMojo extends AbstractMojo {
   /**
    * Runtime classpath elements.
    *
-   * @parameter expression="${project.runtimeClasspathElements}"
+   * @parameter property="project.runtimeClasspathElements"
    * @required
    * @readonly
    */
@@ -77,7 +77,7 @@ public abstract class AbstractBeneratorMojo extends AbstractMojo {
   /**
    * Test classpath elements.
    *
-   * @parameter expression="${project.testClasspathElements}"
+   * @parameter property="project.testClasspathElements"
    * @required
    * @readonly
    */

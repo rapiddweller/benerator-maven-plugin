@@ -5,7 +5,7 @@
 
     <groupId>com.rapiddweller</groupId>
     <artifactId>benerator-maven-plugin</artifactId>
-    <version>1.2.0-jdk-11-SNAPSHOT</version>
+    <version>2.0.0-jdk-11</version>
     <packaging>maven-plugin</packaging>
 
     <name>rapiddweller-benerator maven plugin</name>
@@ -15,11 +15,10 @@
     </description>
 
     <properties>
-        <benerator_version>${version}</benerator_version>
+        <benerator_version>${project.version}</benerator_version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <java_source_version>11</java_source_version>
-        <java_target_version>11</java_target_version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <dependency_graalvm.version>21.1.0</dependency_graalvm.version>
         <plugin_maven-plugin-plugin.version>3.6.1</plugin_maven-plugin-plugin.version>
         <plugin_maven-project-info-reports-plugin.version>2.9</plugin_maven-project-info-reports-plugin.version>
@@ -181,8 +180,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${plugin_maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>${java_source_version}</source>
-                    <target>${java_target_version}</target>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
 
@@ -207,7 +206,7 @@
                 <version>${plugin_maven-javadoc-plugin.version}</version>
                 <configuration>
                     <doclint>none</doclint>
-                    <source>${java_source_version}</source>
+                    <source>${maven.compiler.source}</source>
                     <detectJavaApiLink>false</detectJavaApiLink>
                 </configuration>
                 <executions>

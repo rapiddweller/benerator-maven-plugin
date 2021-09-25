@@ -26,6 +26,7 @@ This library is optional for [rapiddweller 'Benerator'](https://www.benerator.de
   for additional support resources.
 - Checkout the maintainers website [www.rapiddweller.com](https://www.rapiddweller.com/)
   for additional support resources.
+- Or read about in our rapiddweller benerator [online manual](https://www.benerator.de/ce/2.0.0/doc/maven_benerator_plugin.html)
 
 ## Getting Involved
 

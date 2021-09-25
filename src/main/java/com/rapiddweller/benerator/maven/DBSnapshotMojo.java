@@ -60,7 +60,7 @@ public class DBSnapshotMojo extends AbstractBeneratorMojo {
   /**
    * The database user name.
    *
-   * @parameter expression="${user.name}"
+   * @parameter property="user.name"
    * @required
    */
   protected String dbUser;
@@ -68,21 +68,21 @@ public class DBSnapshotMojo extends AbstractBeneratorMojo {
   /**
    * The database password.
    *
-   * @parameter expression="${user.name}"
+   * @parameter property="user.name"
    */
   protected String dbPassword;
 
   /**
    * The database catalog to use.
    *
-   * @parameter expression="${user.name}"
+   * @parameter property="user.name"
    */
   protected String dbCatalog;
 
   /**
    * The database schema to use.
    *
-   * @parameter expression="${user.name}"
+   * @parameter property="user.name"
    */
   protected String dbSchema;
 
@@ -91,7 +91,7 @@ public class DBSnapshotMojo extends AbstractBeneratorMojo {
    * Available values: dbunit, sql, xls.
    * If left blank, dbunit is used.
    *
-   * @parameter expression="${user.name}"
+   * @parameter property="user.name"
    */
   protected String snapshotFormat;
 

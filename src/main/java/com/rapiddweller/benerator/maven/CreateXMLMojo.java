@@ -46,7 +46,7 @@ public class CreateXMLMojo extends AbstractBeneratorMojo {
 	/**
 	 * The path of the XML Schema file relative to the project's root.
 	 *
-	 * @parameter expression="src/test/benerator/${artifact-id}.xsd"
+	 * @parameter property="src/test/benerator/${artifact-id}.xsd"
 	 */
 	private File xmlSchema;
 
