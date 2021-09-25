@@ -99,7 +99,7 @@ public class BeneratorMojo extends AbstractBeneratorMojo {
    */
   public void execute() throws MojoExecutionException {
     Thread.setDefaultUncaughtExceptionHandler((t, e) -> {
-      if (!e.toString().equals("java.lang.NoClassDefFoundError: org/graalvm/collections/EconomicMapImpl$3")) {
+      if (!e.toString().equals("java.lang.NoClassDefFoundError: org/graalvm/collections/EconomicMapImpl$3") && !e.toString().contains("failed to access class org.graalvm.collections.EconomicMapImpl")) {
         System.out.println("Caught " + e);
       }
     });
