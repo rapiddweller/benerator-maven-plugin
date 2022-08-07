@@ -5,7 +5,7 @@
 
     <groupId>com.rapiddweller</groupId>
     <artifactId>benerator-maven-plugin</artifactId>
-    <version>2.0.0-jdk-11</version>
+    <version>3.0.0-jdk-11</version>
     <packaging>maven-plugin</packaging>
 
     <name>rapiddweller-benerator maven plugin</name>
@@ -15,11 +15,11 @@
     </description>
 
     <properties>
-        <benerator_version>${project.version}</benerator_version>
+        <benerator_version>3.0.0-jdk-11-SNAPSHOT</benerator_version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <dependency_graalvm.version>21.1.0</dependency_graalvm.version>
+        <dependency_graalvm.version>22.2.0</dependency_graalvm.version>
         <plugin_maven-plugin-plugin.version>3.6.1</plugin_maven-plugin-plugin.version>
         <plugin_maven-project-info-reports-plugin.version>2.9</plugin_maven-project-info-reports-plugin.version>
         <plugin_maven-site-plugin.version>3.7</plugin_maven-site-plugin.version>

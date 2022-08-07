@@ -73,21 +73,14 @@ public class AssemblyMojo extends AbstractBeneratorMojo {
     }
   }
 
-  private void copyBeneratorInstallation(File assemblyDir) throws IOException {
+  private void copyBeneratorInstallation(File assemblyDir) {
     String beneratorHome = System.getenv("BENERATOR_HOME");
     if (StringUtil.isEmpty(beneratorHome)) {
       getLog().error("BENERATOR_HOME not defined");
       return;
     }
-    try {
-      File installationDir = new File(beneratorHome);
-      FileUtil.copy(installationDir, assemblyDir, true);
-    } catch (FileNotFoundException e) {
-      getLog().error("benerator installation not found at BENERATOR_HOME: " + beneratorHome + ". " +
-          "Copying dependencies without benerator files", e);
-    } catch (IOException e) {
-      throw e;
-    }
+    File installationDir = new File(beneratorHome);
+    FileUtil.copy(installationDir, assemblyDir, true);
   }
 
   private void copyDependencies(File assemblyDir)
