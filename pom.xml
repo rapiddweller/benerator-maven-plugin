@@ -15,7 +15,7 @@
     </description>
 
     <properties>
-        <benerator_version>3.0.0-jdk-11-SNAPSHOT</benerator_version>
+        <benerator_version>3.0.0-jdk-11</benerator_version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
