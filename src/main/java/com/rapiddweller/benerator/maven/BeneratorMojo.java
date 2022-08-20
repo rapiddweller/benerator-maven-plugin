@@ -107,7 +107,7 @@ public class BeneratorMojo extends AbstractBeneratorMojo {
     setupClasspath();
     try {
       Benerator.main(new String[] {descriptor.getAbsolutePath()});
-    } catch (IOException e) {
+    } catch (Exception e) {
       throw new MojoExecutionException("Error in generation", e);
     }
   }

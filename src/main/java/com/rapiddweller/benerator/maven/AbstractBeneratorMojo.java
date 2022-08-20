@@ -56,7 +56,7 @@ public abstract class AbstractBeneratorMojo extends AbstractMojo {
    *
    * @parameter property="file.encoding"
    */
-  protected String encoding;
+  protected String encoding ="UTF-8";
 
   /**
    * The scope of which dependencies should be resolved.
