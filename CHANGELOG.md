@@ -1,6 +1,11 @@
 # Changelog
 
 <!--lint disable no-duplicate-headings-->
+## 3.2.0
+
+### Release Highlights
+
+- Version for rapiddweller benerator 3.2.0
 
 ## 2.0.0
 
