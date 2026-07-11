@@ -67,14 +67,14 @@ public class BeneratorMojo extends AbstractBeneratorMojo {
   /**
    * The database password (can be queried in the descriptor file as ${db_password}).
    *
-   * @parameter property="user.name"
+   * @parameter
    */
   protected String dbPassword;
 
   /**
    * The database schema to use (can be queried in the descriptor file as ${db_schema}).
    *
-   * @parameter property="user.name"
+   * @parameter
    */
   protected String dbSchema;
 
