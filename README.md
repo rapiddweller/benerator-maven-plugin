@@ -1,14 +1,16 @@
-# maven-benerator-plugin
+# benerator-maven-plugin
 
-![.github/workflows/ci.yml](https://github.com/rapiddweller/benerator-maven-plugin/workflows/.github/workflows/ci.yml/badge.svg)[![Codacy
-Badge](https://app.codacy.com/project/badge/Grade/f1e0c887d8ca410e8de4d3cbbc977416)](https://www.codacy.com/gh/rapiddweller/benerator-maven-plugin/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=rapiddweller/maven-benerator-plugin&amp;utm_campaign=Badge_Grade)[![Codacy
-Badge](https://app.codacy.com/project/badge/Coverage/f1e0c887d8ca410e8de4d3cbbc977416)](https://www.codacy.com/gh/rapiddweller/benerator-maven-plugin/dashboard?utm_source=github.com&utm_medium=referral&utm_content=rapiddweller/benerator-maven-plugin&utm_campaign=Badge_Coverage)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.rapiddweller/benerator-maven-plugin/badge.svg)](https://search.maven.org/artifact/com.rapiddweller/benerator-maven-plugin)
+[![CI](https://github.com/rapiddweller/benerator-maven-plugin/actions/workflows/ci.yml/badge.svg)](https://github.com/rapiddweller/benerator-maven-plugin/actions/workflows/ci.yml)
+[![Maven Central](https://img.shields.io/maven-central/v/com.rapiddweller/benerator-maven-plugin.svg)](https://search.maven.org/artifact/com.rapiddweller/benerator-maven-plugin)
 
-'maven-benerator-plugin' is an open source Java library forked from maven-benerator-plugin by Volker Bergmann.
+'benerator-maven-plugin' is an open source Java library forked from maven-benerator-plugin by Volker Bergmann.
 
 It provides a Maven plugin for integrating rapiddweller-benerator in your build process. The goals are benerator:
-generate, benerator:dbsnapshot and benerator:createxml.
+generate, benerator:dbsnapshot, benerator:createxml and benerator:datamimic.
+
+`benerator:datamimic` converts Benerator XML descriptors (`*.ben.xml`) below `sourceDirectory` (default
+`src/test/benerator`) to [DATAMIMIC](https://www.datamimic.io) format, writing the result and a
+`migration-summary.md` to `outputDirectory` (default `${project.build.directory}/datamimic`).
 
 ## Introduction
 
@@ -26,7 +28,7 @@ This library is optional for [rapiddweller 'Benerator'](https://www.benerator.de
   for additional support resources.
 - Checkout the maintainers website [www.rapiddweller.com](https://www.rapiddweller.com/)
   for additional support resources.
-- Or read about in our rapiddweller benerator [online manual](https://www.benerator.de/ce/2.0.0/doc/maven_benerator_plugin.html)
+- Or read about in our rapiddweller benerator [online manual](https://docs.benerator.de/latest/maven_benerator_plugin.html)
 
 ## Getting Involved
 
