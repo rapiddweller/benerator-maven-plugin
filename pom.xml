@@ -5,37 +5,37 @@
 
     <groupId>com.rapiddweller</groupId>
     <artifactId>benerator-maven-plugin</artifactId>
-    <version>3.2.0-jdk-11</version>
+    <version>4.0.0-jdk-11</version>
     <packaging>maven-plugin</packaging>
 
     <name>rapiddweller-benerator maven plugin</name>
     <description>
         Maven plugin for integrating rapiddweller-benerator in your build process.
-        The goals are benerator:generate, benerator:dbsnapshot and benerator:createxml.
+        The goals are benerator:generate, benerator:dbsnapshot, benerator:createxml and benerator:datamimic.
     </description>
 
     <properties>
-        <benerator_version>3.2.0-jdk-11</benerator_version>
+        <benerator_version>4.0.0-jdk-11</benerator_version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <dependency_graalvm.version>22.2.0</dependency_graalvm.version>
+        <dependency_graalvm.version>22.3.1</dependency_graalvm.version>
         <plugin_maven-plugin-plugin.version>3.6.1</plugin_maven-plugin-plugin.version>
         <plugin_maven-project-info-reports-plugin.version>2.9</plugin_maven-project-info-reports-plugin.version>
         <plugin_maven-site-plugin.version>3.7</plugin_maven-site-plugin.version>
-        <plugin_maven-assembly-plugin.version>3.3.0</plugin_maven-assembly-plugin.version>
-        <plugin_maven-compiler-plugin.version>3.8.1</plugin_maven-compiler-plugin.version>
+        <plugin_maven-assembly-plugin.version>3.8.0</plugin_maven-assembly-plugin.version>
+        <plugin_maven-compiler-plugin.version>3.15.0</plugin_maven-compiler-plugin.version>
         <plugin_maven-plugin-api.version>3.6.3</plugin_maven-plugin-api.version>
-        <plugin_maven-gpg-plugin.version>1.6</plugin_maven-gpg-plugin.version>
-        <plugin_maven-javadoc-plugin.version>3.2.0</plugin_maven-javadoc-plugin.version>
+        <plugin_maven-gpg-plugin.version>3.2.8</plugin_maven-gpg-plugin.version>
+        <plugin_maven-javadoc-plugin.version>3.5.0</plugin_maven-javadoc-plugin.version>
         <plugin_maven-jxr-plugin.version>3.0.0</plugin_maven-jxr-plugin.version>
         <plugin_maven-pmd-plugin.version>3.14.0</plugin_maven-pmd-plugin.version>
-        <plugin_maven-resources-plugin.version>2.6</plugin_maven-resources-plugin.version>
+        <plugin_maven-resources-plugin.version>3.3.0</plugin_maven-resources-plugin.version>
         <plugin_plugin_maven-site-plugin.version>3.9.1</plugin_plugin_maven-site-plugin.version>
         <plugin_maven-source-plugin.version>3.2.1</plugin_maven-source-plugin.version>
         <plugin_maven-surefire-plugin.version>3.0.0-M5</plugin_maven-surefire-plugin.version>
         <plugin_maven-surefire-report-plugin.version>3.0.0-M5</plugin_maven-surefire-report-plugin.version>
-        <plugin_nexus-staging-maven-plugin.version>1.6.8</plugin_nexus-staging-maven-plugin.version>
+        <plugin_central-publishing-maven-plugin.version>0.11.0</plugin_central-publishing-maven-plugin.version>
         <plugin_surefire-api.version>3.0.0-M5</plugin_surefire-api.version>
         <plugin_surefire-junit4.version>3.0.0-M5</plugin_surefire-junit4.version>
         <plugin_versions-maven-plugin.version>2.8.1</plugin_versions-maven-plugin.version>
@@ -286,6 +286,10 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
+                        <!-- Pinned for reproducible builds. Without a version the plugin floats to
+                             the newest release; 3.2.x also enforces "best practices" that ignore the
+                             gpg.passphrase supplied via settings.xml. 3.2.8 keeps the classic
+                             settings.xml passphrase + imported-key CI setup. -->
                         <version>${plugin_maven-gpg-plugin.version}</version>
                         <executions>
                             <execution>
@@ -303,25 +307,23 @@
                             </execution>
                         </executions>
                     </plugin>
+                    <!-- OSSRH (oss.sonatype.org) shut down 2025-06-30. Publishing now goes
+                         through the Central Portal. central-publishing-maven-plugin uploads on
+                         `deploy` and, with autoPublish, releases without the old staging UI.
+                         Snapshots go to the Portal snapshots repo by default (centralSnapshotsUrl),
+                         so no distributionManagement block is needed. -->
                     <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>${plugin_nexus-staging-maven-plugin.version}</version>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>${plugin_central-publishing-maven-plugin.version}</version>
                         <extensions>true</extensions>
                         <configuration>
-                            <serverId>ossrh</serverId>
-                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                            <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                            <publishingServerId>central</publishingServerId>
+                            <autoPublish>true</autoPublish>
                         </configuration>
                     </plugin>
                 </plugins>
             </build>
-            <distributionManagement>
-                <snapshotRepository>
-                    <id>ossrh</id>
-                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-                </snapshotRepository>
-            </distributionManagement>
         </profile>
     </profiles>
 
@@ -338,7 +340,7 @@
         </repository>
         <repository>
             <id>snapshots-repo</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
@@ -349,9 +351,9 @@
     </repositories>
 
     <scm>
-        <url>https://github.com/rapiddweller/maven-benerator-plugin</url>
-        <connection>scm:git:git://github.com/rapiddweller/maven-benerator-plugin.git</connection>
-        <developerConnection>scm:git:git://github.com/rapiddweller/maven-benerator-plugin.git</developerConnection>
+        <url>https://github.com/rapiddweller/benerator-maven-plugin</url>
+        <connection>scm:git:git://github.com/rapiddweller/benerator-maven-plugin.git</connection>
+        <developerConnection>scm:git:git://github.com/rapiddweller/benerator-maven-plugin.git</developerConnection>
     </scm>
 </project>
 
